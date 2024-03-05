@@ -1,0 +1,9 @@
+spring:
+
+  data:
+    redis:
+      database: 0
+      host: localhost
+      port: 6379
+      password:
+
