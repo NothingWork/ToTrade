@@ -23,4 +23,5 @@ public interface GoodMapper {
      * @date: 2024/3/6
      */
     List<Good> queryGoods();
+    List<Good> queryGoodsByInfo(String goodInfo);
 }

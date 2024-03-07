@@ -8,6 +8,7 @@ import com.totrade.util.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ import java.util.List;
 public class GoodServiceImpl implements IGoodService {
     @Autowired
     GoodMapper goodMapper;
+    List<Good> list = new ArrayList<>();
     /**
      * @author Yun
      * @description: 查询商品
@@ -27,12 +29,34 @@ public class GoodServiceImpl implements IGoodService {
      * @return: com.totrade.domain.Result
      * @date: 2024/3/6
      */
+
+    /**
+     * @author Yun
+     * @description: 查询所有商品
+     * @param: null
+     * @return: com.totrade.domain.Result
+     * @date: 2024/3/7
+     */
     @Override
     public Result queryGoods() {
-        List<Good> list = goodMapper.queryGoods();
-        for(Good good:list){
-            good.setImageBytes(ImageUtil.getImageBytes(good.getPicSrc()));
-        }
+        list = goodMapper.queryGoods();
+//        for(Good good:list){
+//            good.setImageBytes(ImageUtil.getImageBytes(good.getPicSrc()));
+//        }
         return new Result(1,"success",list);
+    }
+
+    /**
+     * @author Yun
+     * @description:根据商品信息模糊查询
+     * @param: goodInfo
+     * @return: com.totrade.domain.Result
+     * @date: 2024/3/7
+     */
+
+    @Override
+    public Result queryGoodsByInfo(String goodInfo) {
+        list = goodMapper.queryGoodsByInfo(goodInfo);
+        return new Result(2,"success",list);
     }
 }
