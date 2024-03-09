@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Good {
-    private Integer goodId;
+    private String goodId;
     private String price;
     private String picSrc;
     private Integer userId;

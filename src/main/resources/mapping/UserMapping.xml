@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.totrade.mapper.UserMapper">
+<!--    用户注册-->
+  <insert id="register" parameterType="User">
+      insert into account(openId, userName, avatarSrc, sessionKey) values (#{openId},#{userName},#{avatarSrc},#{Session_Key})
+  </insert>
+<!--    根据用户openid查找用户-->
+    <select id="getUserByOpenId" resultType="User">
+        select * from account where openId = #{openId}
+    </select>
+<!--    根据用户名精确查找用户-->
+    <select id="getUserByName" resultType="boolean">
+        select * from account where userName = #{userName}
+    </select>
+</mapper>

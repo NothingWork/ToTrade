@@ -4,7 +4,6 @@ spring:
     password: root
     url: jdbc:mysql://localhost:3306/totrade?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
-
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.totrade.domain
