@@ -19,5 +19,4 @@ public class Good {
     private String picSrc;
     private Integer userId;
     private String goodInfo;
-    private byte[] imageBytes;
 }
