@@ -21,4 +21,6 @@ public class Message {
     private String to; //消息的接收者
     private String time; //消息的发送时间
     private String text; //消息的文本内容
+
+    private boolean ifSend; //消息是否是未读消息
 }

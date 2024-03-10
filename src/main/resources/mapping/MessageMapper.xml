@@ -1,0 +1,9 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.totrade.mapper.MessageMapper">
+    <insert id="saveMessage" parameterType="com.totrade.domain.Message">
+        insert into message(`from`,`to`,time,text,name,ifSend) values(#{from},#{to},#{time},#{text},#{name},#{ifSend})
+    </insert>
+</mapper>

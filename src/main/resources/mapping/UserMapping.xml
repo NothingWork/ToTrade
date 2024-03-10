@@ -4,11 +4,11 @@
 
 <mapper namespace="com.totrade.mapper.UserMapper">
 <!--    用户注册-->
-  <insert id="register" parameterType="User">
+  <insert id="register" parameterType="com.totrade.domain.User">
       insert into account(openId, userName, avatarSrc, sessionKey) values (#{openId},#{userName},#{avatarSrc},#{Session_Key})
   </insert>
 <!--    根据用户openid查找用户-->
-    <select id="getUserByOpenId" resultType="User">
+    <select id="getUserByOpenId" resultType="com.totrade.domain.User">
         select * from account where openId = #{openId}
     </select>
 <!--    根据用户名精确查找用户-->

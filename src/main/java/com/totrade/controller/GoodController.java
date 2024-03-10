@@ -20,11 +20,12 @@ public class GoodController {
     //查询所有商品
     @GetMapping("/api/getGoods")
     public Result queryGoods() {
-    return igoodService.queryGoods();
+        return igoodService.queryGoods();
     }
+
     //根据商品信息模糊查询
     @GetMapping("/api/searchGoods")
-    public Result queryGoodsByInfo(@RequestParam("goodInfo") String goodInfo){
-        return igoodService.queryGoodsByInfo("%"+goodInfo+"%");
+    public Result queryGoodsByInfo(@RequestParam("goodInfo") String goodInfo) {
+        return igoodService.queryGoodsByInfo("%" + goodInfo + "%");
     }
 }
