@@ -4,6 +4,7 @@ import com.totrade.domain.Message;
 import com.totrade.domain.Result;
 import com.totrade.service.IMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +34,13 @@ public class MessageController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         //ifSend默认值为true
         return iMessageService.sendMessage(new Message(from,to,LocalDateTime.now().format(formatter),text,true));
+    }
+    //获取所有未读消息接口
+    @GetMapping("/getUnReadMessages")
+    public Result getMessage(
+            @RequestParam("name")String name
+    ){
+        //对于前端来说是UnRead,对于后端来说是未接收
+        return iMessageService.getUnSendMessage(name);
     }
 }

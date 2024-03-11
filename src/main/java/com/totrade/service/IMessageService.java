@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IMessageService {
     Result sendMessage(Message message);
+    Result getUnSendMessage(String name);
 }
