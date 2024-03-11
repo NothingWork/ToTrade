@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Message {
 
-    private String name;//注册名字，用于客户端连接服务端时注册隧道
-
     private String from; //消息的发送者
     private String to; //消息的接收者
     private String time; //消息的发送时间

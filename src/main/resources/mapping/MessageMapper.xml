@@ -4,6 +4,6 @@
 
 <mapper namespace="com.totrade.mapper.MessageMapper">
     <insert id="saveMessage" parameterType="com.totrade.domain.Message">
-        insert into message(`from`,`to`,time,text,name,ifSend) values(#{from},#{to},#{time},#{text},#{name},#{ifSend})
+        insert into message(`from`,`to`,time,text,ifSend) values(#{from},#{to},#{time},#{text},#{ifSend})
     </insert>
 </mapper>

@@ -1,14 +1,12 @@
 package com.totrade.component.Handler;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.parser.Feature;
+import com.totrade.component.ChatServer;
 import com.totrade.domain.Message;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @author Yun
@@ -17,28 +15,22 @@ import java.time.format.DateTimeFormatter;
  * @date 2024/3/9
  */
 public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
+    //监听前端发来的注册消息
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame) {
-        //将从前端接受到的消息转为message对象,将不包含的属性赋值为null
-
+        //将从前端接收注册消息
         try {
-            Message message = JSON.parseObject(textWebSocketFrame.text(), Message.class, Feature.IgnoreNotMatch);
+            //注册隧道
+            System.out.println(textWebSocketFrame.text());
+            ChatServer.USERS.put(textWebSocketFrame.text(), channelHandlerContext.channel());
             //获取并填充消息的发送时间
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            message.setTime(LocalDateTime.now().format(formatter));
-            //初次连接操作，携带注册使用的name
-            if (message.getName() != null) {
-                //连接操作
-                ConnectHandler.execute(message, channelHandlerContext);
-            }
-            //不是连接操作，是消息发送操作
-            else {
-                //信息发送
-               new SendMessageHandler().execute(message);
-            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
+    }
+    //将消息通过隧道发送出去
+    public static void sendMessage(Message message, Channel channel) {
+        //发送消息
+        channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(message)));
     }
 }
