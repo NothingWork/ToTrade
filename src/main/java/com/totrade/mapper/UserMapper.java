@@ -14,7 +14,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper {
     User getUserByOpenId(String openId);
+    String getUserIdByName(String name);
+    String getNameByUserId(String id);
     //根据用户名精确查找用户，存在返回true，不存在返回false
     Boolean getUserByName(String userName);
     Boolean register(User user);
+
 }

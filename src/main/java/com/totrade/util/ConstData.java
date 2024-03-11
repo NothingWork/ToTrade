@@ -11,5 +11,5 @@ public class ConstData {
     public static final String APPID = "wx3f7f48378a3ce78e";
     public static final String SECRET = "f205aaf81f4bfc33a9480590d16d96db";
     public static final String GRANT_TYPE = "authorization_code";
-    public static final String defultSrc = "E:/avatar/user.jpg";
+    public static final String defaultSrc = "E:/avatar/user.jpg";
 }

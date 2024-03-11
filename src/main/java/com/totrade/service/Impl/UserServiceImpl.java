@@ -27,7 +27,7 @@ public class UserServiceImpl implements IUserService {
         JSONObject jsonObject = WeChatUtil.getSessionKeyOrOpenId(code);
         if(jsonObject.containsKey("errcode")){
             //登录失败，返回错误信息
-            return new Result(-1,"log_fail",jsonObject);
+            return new Result(-201,"log_fail",jsonObject);
         }
         String openId = (String) jsonObject.get("openid");
         User user = userMapper.getUserByOpenId(openId);
@@ -40,17 +40,18 @@ public class UserServiceImpl implements IUserService {
                 userName = RandomUtil.getRandomString();
             }
             //2.构建User对象
+
             user = new User(openId,(String)jsonObject.get("sessionKey"),
-                    userName, ConstData.defultSrc);
+                    userName, ConstData.defaultSrc);
             //3.注册 根据返回结果返回成功与否
              if(register(user)){
-                 return new Result(4,"reg_success",user);
+                 return new Result(202,"reg_success",user);
              }
              else{
-                 return new Result(-2,"reg_fail",null);
+                 return new Result(-202,"reg_fail",null);
              }
         }
-        return new Result(3,"log_success", user);
+        return new Result(201,"log_success", user);
     }
 
     @Override

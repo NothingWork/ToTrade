@@ -15,4 +15,10 @@
     <select id="getUserByName" resultType="boolean">
         select * from account where userName = #{userName}
     </select>
+    <select id="getUserIdByName" resultType="string">
+        select openId from account where userName = #{name}
+    </select>
+    <select id="getNameByUserId" resultType="string">
+        select userName from account where openId = #{id}
+    </select>
 </mapper>

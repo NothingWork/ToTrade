@@ -4,7 +4,6 @@ import com.totrade.domain.Good;
 import com.totrade.domain.Result;
 import com.totrade.mapper.GoodMapper;
 import com.totrade.service.IGoodService;
-import com.totrade.util.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +21,6 @@ public class GoodServiceImpl implements IGoodService {
     @Autowired
     GoodMapper goodMapper;
     List<Good> list = new ArrayList<>();
-    /**
-     * @author Yun
-     * @description: 查询商品
-     * @param: good
-     * @return: com.totrade.domain.Result
-     * @date: 2024/3/6
-     */
 
     /**
      * @author Yun
@@ -43,7 +35,7 @@ public class GoodServiceImpl implements IGoodService {
 //        for(Good good:list){
 //            good.setImageBytes(ImageUtil.getImageBytes(good.getPicSrc()));
 //        }
-        return new Result(1,"success",list);
+        return new Result(101, "success", list);
     }
 
     /**
@@ -57,6 +49,6 @@ public class GoodServiceImpl implements IGoodService {
     @Override
     public Result queryGoodsByInfo(String goodInfo) {
         list = goodMapper.queryGoodsByInfo(goodInfo);
-        return new Result(2,"success",list);
+        return new Result(102, "success", list);
     }
 }

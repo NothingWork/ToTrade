@@ -4,6 +4,8 @@ import com.totrade.domain.Message;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author Yun
  * @version 1.0
@@ -13,5 +15,8 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface MessageMapper {
-    Integer saveMessage(Message message);
+    void saveMessage(Message message);
+    List<Message> getUnSendMessage(String name);
+    Integer setSend(String name);
+    List<Message> getAllMessages(String name);
 }

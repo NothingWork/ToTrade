@@ -21,4 +21,5 @@ public class Message {
     private String text; //消息的文本内容
 
     private boolean ifSend; //消息是否是未读消息
+
 }
