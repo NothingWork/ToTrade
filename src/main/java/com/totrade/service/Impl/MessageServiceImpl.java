@@ -94,4 +94,24 @@ public class MessageServiceImpl implements IMessageService {
         return new Result(303, "success", messageMapper.getAllMessages(name));
     }
 
+    /**
+     * @author Yun
+     * @description: 读取未读消息，并将这些未读消息发送出去，最后将他们的状态修改为已发送
+     * @param: name
+     * @return: com.totrade.domain.Result
+     * @date: 2024/3/11
+     */
+    @Override
+    public Result getUnSendMessage(String name){
+        //将未读消息从隧道发送出去
+        List<Message> list = messageMapper.getUnSendMessage(name);
+        for (Message message: list
+             ) {
+            WebSocketHandler.sendMessage(message,ChatServer.USERS.get(name));
+        }
+        //将该用户的所有消息改为已读
+        int number =  messageMapper.setSend(name);
+        return new Result(6,"success",number);
+    }
+
 }

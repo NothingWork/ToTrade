@@ -6,19 +6,4 @@
     <insert id="saveMessage" parameterType="com.totrade.domain.Message">
         insert into message(`from`,`to`,time,text,ifSend) values(#{from},#{to},#{time},#{text},#{ifSend})
     </insert>
-    <select id="getUnSendMessage" resultType="com.totrade.domain.Message">
-        select *
-        from message where `to` = #{name} and ifSend = 0;
-    </select>
-    <update id="setSend" parameterType="string">
-        update message
-        set ifSend = 1
-        where `to` = #{name}
-    </update>
-
-<!--    这个操作实际应用场景下数据库中必然均为已读消息，所以没必要指定ifSend = 1，此处为保险起见-->
-    <select id="getAllMessages" resultType="com.totrade.domain.Message">
-        select *
-        from message where `to` = #{name} and ifSend = 1;
-    </select>
 </mapper>
