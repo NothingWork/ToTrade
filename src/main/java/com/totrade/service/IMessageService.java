@@ -10,5 +10,9 @@ public interface IMessageService {
 
     Result getUnSendMessage(String name);
 
-    Result getAllMessages(String name);
+    Result getAllMessages(String from,String to);
+
+    Result getLastMessages(String name);
+
+    String nameOrId(String name,String id);
 }

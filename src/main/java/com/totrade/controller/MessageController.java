@@ -50,11 +50,22 @@ public class MessageController {
     }
 
     //获取该用户的所有消息用于渲染聊天记录
-    @Operation(summary = "获取消息记录")
+    @Operation(summary = "获取与该接收者对话的所有消息记录")
     @GetMapping("/getAllMessages")
     public Result getAllMessages(
-            @Parameter(name = "name", description = "用户名") String name
+            @Parameter(name = "from", description = "发送者") String from,
+            @Parameter(name = "to", description = "接收者") String to
     ) {
-        return iMessageService.getAllMessages(name);
+        return iMessageService.getAllMessages(from,to);
     }
+
+    @Operation(summary = "获取当前登录用户的所有最新消息记录")
+    @GetMapping("/getLastMessages")
+    public Result getLastMessages(
+            @Parameter(name = "name",description = "用户名") String name
+    ){
+        return iMessageService.getLastMessages(name);
+    }
+
+
 }

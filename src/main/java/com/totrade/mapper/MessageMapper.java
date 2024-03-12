@@ -18,5 +18,6 @@ public interface MessageMapper {
     void saveMessage(Message message);
     List<Message> getUnSendMessage(String name);
     Integer setSend(String name);
-    List<Message> getAllMessages(String name);
+    List<Message> getAllMessages(String from,String to);
+    List<Message> getLastMessages(String name);
 }
